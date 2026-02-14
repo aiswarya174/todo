@@ -30,6 +30,7 @@ function ToDo() {
                     tasks.map((task,index)=>
                     <li key={index}>
                         {task}
+                        <button className="ml-4 bg-red-300 hover:bg-red-400 text-white px-3 py-1 rounded-lg text-sm transition duration-200" >Delete</button>
                     </li>)
                 }
             
