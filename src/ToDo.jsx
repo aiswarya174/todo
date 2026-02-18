@@ -7,6 +7,12 @@ function ToDo() {
     const handleInput=(e)=>{
         setNewTask(e.target.value)
     }
+    const addTask=()=>{
+        if(newTask.length>0){
+            setTasks([...tasks,newTask])
+            setNewTask('')
+        }
+    }
 
     return (
         <div className='min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-200 to-purple-400 p-4'>
@@ -30,7 +36,7 @@ function ToDo() {
                         <button
                             type="button"
                             className="bg-purple-600 hover:bg-purple-700 text-white px-4 rounded-lg transition duration-200"
-                        >
+                        onClick={addTask}>
                             Add
                         </button>
                     </div>
