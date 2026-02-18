@@ -12,6 +12,41 @@ function ToDo() {
             setTasks([...tasks,newTask])
             setNewTask('')
         }
+        else{
+            alert("Please enter a task before adding.")
+        }
+    }
+    const deleteTask=(i)=>{
+        const updatedTasks=tasks.filter((item,index)=>index!==i)
+        setTasks(updatedTasks)
+
+    }
+    const moveTaskUp=(index)=>{
+        const updatedTask=[...tasks]
+        if(index>0){
+
+            [updatedTask[index],updatedTask[index-1]]=[updatedTask[index-1],updatedTask[index]]
+            setTasks(updatedTask)
+        }
+    }
+    const moveTaskDown=(index)=>{
+        const updatedTask=[...tasks]
+        if(index<tasks.length-1){
+                    [updatedTask[index],updatedTask[index+1]]=[updatedTask[index+1],updatedTask[index]]
+                    setTasks(updatedTask)
+
+        }
+    }
+    const editTask=(index)=>{
+        const newTask=prompt("Edit your Task:",tasks[index])
+        if(newTask!==null){
+            const updatedTasks=[...tasks]
+            updatedTasks[index]=newTask
+            setTasks(updatedTasks)
+        }
+        else{
+            alert("Task edit cancelled.")
+        }
     }
 
     return (
@@ -50,13 +85,14 @@ function ToDo() {
                             <span className='flex-1'>{task}</span>
 
                             <div className='flex gap-2 ml-4'>
-                                <button className="bg-red-400 hover:bg-red-500 text-white px-3 py-1 rounded-md text-sm">
+                                <button className="bg-red-400 hover:bg-red-500 text-white px-3 py-1 rounded-md text-sm" onClick={()=>deleteTask(index)}>
                                     Delete
                                 </button>
-                                <button className='bg-emerald-400 hover:bg-emerald-500 text-white px-2 py-1 rounded-md text-sm'>
+                                <button className='bg-blue-400 hover:bg-blue-500 text-white px-3 py-1 rounded-md text-sm' onClick={()=>editTask(index)}>Edit</button>
+                                <button className='bg-emerald-400 hover:bg-emerald-500 text-white px-2 py-1 rounded-md text-sm' onClick={()=>moveTaskUp(index)}>
                                     ↑
                                 </button>
-                                <button className='bg-emerald-400 hover:bg-emerald-500 text-white px-2 py-1 rounded-md text-sm'>
+                                <button className='bg-emerald-400 hover:bg-emerald-500 text-white px-2 py-1 rounded-md text-sm' onClick={()=>moveTaskDown(index)}>
                                     ↓
                                 </button>
                             </div>
